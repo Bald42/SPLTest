@@ -1,7 +1,7 @@
 using static Enums;
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour, IMove
+public class EnemyMove : BaseSuscribe, IMove
 {
     [SerializeField] private EnemyMoveVector enemyMoveVector = default;
     [SerializeField] private float speed = 5f;
@@ -27,6 +27,7 @@ public class EnemyMove : MonoBehaviour, IMove
         {
             directionVector = Vector3.forward;
         }
+        Subscribe();
     }
 
     public void Move()
@@ -35,7 +36,7 @@ public class EnemyMove : MonoBehaviour, IMove
         transform.Translate(directionVector * speed * direction * Time.deltaTime);
     }
 
-    private void Update()
+    protected override void OnUpdateHandler()
     {
         Move();
     }

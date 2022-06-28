@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour, IMove
+public class PlayerMove : BaseSuscribe, IMove
 {
     [Header("References")]
     [SerializeField] private Transform camPoint = null;
@@ -27,9 +27,10 @@ public class PlayerMove : MonoBehaviour, IMove
     {
         this.playerInput = playerInput;
         this.characterController = characterController;
+        Subscribe();
     }
 
-    private void Update()
+    protected override void OnUpdateHandler()
     {
         Rotation();
         Move();
