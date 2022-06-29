@@ -1,17 +1,19 @@
+using System.Linq;
 using UnityEngine;
+using static Enums;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private Camera camera = null;
+    [SerializeField] private Camera mainCamera = null;
     [SerializeField] private BulletsPool bulletsPool = null;
-    [SerializeField] private PlayerController playerController = null;
+    private PlayerController playerController = null;
     [SerializeField] private EnemyController[] enemyControllers = null;
 
-    public Camera Camera
+    public Camera MainCamera
     {
         get
         {
-            return camera;
+            return mainCamera;
         }
     }
 
@@ -33,11 +35,24 @@ public class GameController : MonoBehaviour
 
     public void Init()
     {
-        // TODO переделать на поиск по тегу
+        FindUnits();
         playerController.Init();
         for (int i = 0; i < enemyControllers.Length; i++)
         {
             enemyControllers[i].Init();
+        }
+    }
+
+    private void FindUnits()
+    {
+        GameTag[] allGameTags = FindObjectsOfType<GameTag>();
+        GameTag[] enemies = FindObjectsOfType<GameTag>();
+        playerController = allGameTags.Where(x => x.MyTag == Tag.Player).FirstOrDefault().GetComponent<PlayerController>();
+        enemies = allGameTags.Where(x => x.MyTag == Tag.Enemy && x.gameObject.activeSelf).ToArray();
+        enemyControllers = new EnemyController[enemies.Length];
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemyControllers[i] = enemies[i].GetComponent<EnemyController>();
         }
     }
 }

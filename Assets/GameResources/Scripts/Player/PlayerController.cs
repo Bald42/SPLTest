@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         Cach();
         playerInput.Init();
         playerMove.Init(playerInput, characterController);
-        playerShoot.Init(gameTag, playerInput, MainController.Instance.GameController.Camera, MainController.Instance.GameController.BulletsPool);
+        playerShoot.Init(gameTag, playerInput, MainController.Instance.GameController.MainCamera, MainController.Instance.GameController.BulletsPool);
         playerTakeDamage.Init(gameTag, playerMove);
     }
 
