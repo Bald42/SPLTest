@@ -11,17 +11,12 @@ public class PlayerController : MonoBehaviour
     private GameTag gameTag = null;
     private PlayerTakeDamage playerTakeDamage = null;
 
-    private void Awake()
-    {
-        Init();
-    }
-
     public void Init()
     {
         Cach();
         playerInput.Init();
         playerMove.Init(playerInput, characterController);
-        playerShoot.Init(gameTag, playerInput, MainController.Instance.GameController.Camera);
+        playerShoot.Init(gameTag, playerInput, MainController.Instance.GameController.Camera, MainController.Instance.GameController.BulletsPool);
         playerTakeDamage.Init(gameTag, playerMove);
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using static Enums;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : BaseSuscribe
 {
     private Vector3 targetPosition = default;
     private Vector3 moveVector = default;
@@ -10,6 +10,17 @@ public class Bullet : MonoBehaviour
     private float dieDelay = 4f;
     private Tag targetTag = Tag.Null;
     private Tag shooterTag = Tag.Null;
+
+    private bool isActive = false;
+    private Coroutine delayDeactive = null;
+
+    public bool IsActive
+    {
+        get
+        {
+            return isActive;
+        }
+    }
 
     public Tag TargetTag
     {
@@ -29,10 +40,13 @@ public class Bullet : MonoBehaviour
         this.targetTag = targetTag;
         this.shooterTag = shooterTag;
         transform.LookAt(targetPosition);
-        StartCoroutine(DelayDestroy());
+        isActive = true;
+        Subscribe();
+        gameObject.SetActive(true);
+        delayDeactive = StartCoroutine(DelayDeactive());
     }
 
-    private void Update()
+    protected override void OnUpdateHandler()
     {
         Move();
     }
@@ -42,7 +56,7 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    private IEnumerator DelayDestroy()
+    private IEnumerator DelayDeactive()
     {
         yield return new WaitForSeconds(dieDelay);
         OnDeactive();
@@ -76,6 +90,9 @@ public class Bullet : MonoBehaviour
 
     private void OnDeactive()
     {
-        Destroy(this.gameObject);
+        isActive = false;
+        StopAllCoroutines();
+        Unsubscribe();
+        gameObject.SetActive(false);
     }
 }

@@ -39,19 +39,18 @@ public class PlayerShoot : BaseShootController, IShot
 
     #endregion
 
-    public void Init(GameTag gameTag, PlayerInput playerInput, Camera camera)
+    public void Init(GameTag gameTag, PlayerInput playerInput, Camera camera, BulletsPool bulletsPool)
     {
         targetTag = Tag.Enemy;
         this.playerInput = playerInput;
         this.camera = camera;
-        base.Init(gameTag);
+        base.Init(gameTag, bulletsPool);
         Subscribe();
     }
 
     public void OnShot(Vector3 direction)
     {
-        var newBullet = Instantiate(prefabBullet);
-        newBullet.Init(shotPoint.position, direction, targetTag, gameTag.MyTag);
+        bulletsPool.OnSpawnBullet(shotPoint.position, direction, targetTag, gameTag.MyTag);
     }
 
     private void RefreshUpdate()
@@ -66,7 +65,6 @@ public class PlayerShoot : BaseShootController, IShot
             {
                 diractionShoot = camera.transform.forward * 100000f;
             }
-
             OnShot(diractionShoot);
         }
     }

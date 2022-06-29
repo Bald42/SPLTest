@@ -7,9 +7,9 @@ public class EnemyShoot : BaseShootController, IShot
     [SerializeField] private float speed = 1f;
     private Transform player = null;
 
-    public void Init(GameTag gameTag, Transform player)
+    public void Init(GameTag gameTag, Transform player, BulletsPool bulletsPool)
     {
-        base.Init(gameTag);
+        base.Init(gameTag, bulletsPool);
         this.player = player;
         targetTag = Tag.Player;
         StartCoroutine(Shoot());
@@ -26,7 +26,6 @@ public class EnemyShoot : BaseShootController, IShot
 
     public void OnShot(Vector3 direction)
     {
-        var newBullet = Instantiate(prefabBullet);
-        newBullet.Init(shotPoint.position, direction, targetTag, gameTag.MyTag);
+        bulletsPool.OnSpawnBullet(shotPoint.position, direction, targetTag, gameTag.MyTag);
     }
 }

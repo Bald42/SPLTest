@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Camera camera = null;
+    [SerializeField] private BulletsPool bulletsPool = null;
     [SerializeField] private PlayerController playerController = null;
     [SerializeField] private EnemyController[] enemyControllers = null;
 
@@ -19,6 +20,14 @@ public class GameController : MonoBehaviour
         get
         {
             return playerController;
+        }
+    }
+
+    public BulletsPool BulletsPool
+    {
+        get
+        {
+            return bulletsPool;
         }
     }
 
