@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class PlayerTakeDamage : BaseTakeDamage, IHit
 {
-    [SerializeField] private PlayerMove playerMove = null;
+    private PlayerMove playerMove = null;
     private Vector3 directionDamage = default;
+
+    public void Init(GameTag gameTag, PlayerMove playerMove)
+    {
+        this.playerMove = playerMove;
+        base.Init(gameTag);
+    }
 
     public void OnHit()
     {

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController = null;
     private PlayerShoot playerShoot = null;
     private GameTag gameTag = null;
+    private PlayerTakeDamage playerTakeDamage = null;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         playerInput.Init();
         playerMove.Init(playerInput, characterController);
         playerShoot.Init(gameTag, playerInput, MainController.Instance.GameController.Camera);
+        playerTakeDamage.Init(gameTag, playerMove);
     }
 
     private void Cach()
@@ -30,5 +32,6 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerShoot = GetComponent<PlayerShoot>();
         gameTag = GetComponent<GameTag>();
+        playerTakeDamage = GetComponent<PlayerTakeDamage>();
     }
 }

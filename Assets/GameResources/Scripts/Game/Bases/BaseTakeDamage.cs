@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class BaseTakeDamage : MonoBehaviour
 {
-    [SerializeField] private GameTag gameTag = null;
+    private GameTag gameTag = null;
+
+    protected void Init(GameTag gameTag)
+    {
+        this.gameTag = gameTag;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
