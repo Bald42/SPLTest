@@ -5,11 +5,6 @@ public class EnemyController : MonoBehaviour
 {
     private EnemyMove enemyMove = null;
 
-    private void Awake()
-    {
-        Init();
-    }
-
     public void Init()
     {
         Cach();

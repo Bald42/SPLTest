@@ -17,6 +17,14 @@ public class MainController : MonoBehaviour
         }
     }
 
+    public GameController GameController
+    {
+        get
+        {
+            return gameController;
+        }
+    }
+
     private void Awake()
     {
         Init();
