@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8950261720372925575}
   - component: {fileID: 1598972557061268506}
   - component: {fileID: 8452170754602699021}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotPoint: {fileID: 385269454470195277}
-  prefabBullet: {fileID: 5453954769419271313, guid: e720f059a07ed5243b31ab132851a24f, type: 3}
   speed: 1
 --- !u!114 &8452170754602699021
 MonoBehaviour:

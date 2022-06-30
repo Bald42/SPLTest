@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerShoot : BaseShootController, IShot
 {
+    [SerializeField] private LayerMask layerMask = default;
     private Camera camera = null;
     private PlayerInput playerInput = null;
     private RaycastHit hit = default;
@@ -57,7 +58,7 @@ public class PlayerShoot : BaseShootController, IShot
     {
         if (playerInput.GetFireInput())
         {
-            if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, float.MaxValue))
+            if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, float.MaxValue, layerMask))
             {
                 diractionShoot = hit.point;
             }

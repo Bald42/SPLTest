@@ -33,7 +33,7 @@ public class EnemyMove : BaseSuscribe, IMove
     public void Move()
     {
         CheckGround();
-        transform.Translate(directionVector * speed * direction * Time.deltaTime);
+        transform.Translate(directionVector * speed * direction * Time.fixedDeltaTime);
     }
 
     protected override void OnFixedUpdateHandler()
@@ -51,13 +51,10 @@ public class EnemyMove : BaseSuscribe, IMove
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null)
+        GameTag gameTag = collision.gameObject.GetComponentInChildren<GameTag>();
+        if (gameTag != null && gameTag.MyTag == Tag.Obstacle)
         {
-            GameTag gameTag = collision.gameObject.GetComponentInChildren<GameTag>();
-            if (gameTag != null && gameTag.MyTag == Tag.Obstacle)
-            {
-                ChangeDirection();
-            }
+            ChangeDirection();
         }
     }
 

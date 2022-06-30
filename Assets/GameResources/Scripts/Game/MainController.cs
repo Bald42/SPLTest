@@ -8,6 +8,7 @@ public class MainController : MonoBehaviour
     public Action OnFixedUpdateEvent = null;
 
     [SerializeField] private GameController gameController = null;
+    [SerializeField] private UIController uIController = null;
     private static MainController instance = null;
 
     public static MainController Instance
@@ -35,6 +36,7 @@ public class MainController : MonoBehaviour
     {
         instance = this;
         gameController.Init();
+        uIController.Init();
     }
 
     private void Update()

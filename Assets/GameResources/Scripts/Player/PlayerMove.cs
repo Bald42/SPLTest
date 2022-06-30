@@ -42,11 +42,11 @@ public class PlayerMove : BaseSuscribe, IMove
 
     public void Move()
     {
-        moveVector = (transform.TransformVector(playerInput.GetMoveInput()) + damageVector) * moveSpeed;
-        characterVelocity = Vector3.Lerp(characterVelocity, moveVector, movementSharpnessOnGround * Time.fixedDeltaTime);
+        moveVector = transform.TransformVector(playerInput.GetMoveInput()) * moveSpeed;
+        characterVelocity = Vector3.Lerp(characterVelocity, moveVector + damageVector, movementSharpnessOnGround * Time.fixedDeltaTime);
         damageVector = Vector3.Lerp(damageVector, Vector3.zero, movementSharpnessOnGround * Time.fixedDeltaTime);
-        characterVelocity += Vector3.down * gravityForce * Time.deltaTime;
-        characterController.Move(characterVelocity * Time.deltaTime);
+        characterVelocity += Vector3.down * gravityForce * Time.fixedDeltaTime;
+        characterController.Move(characterVelocity * Time.fixedDeltaTime);
     }
 
     public void TakeDamage(Vector3 direction)
