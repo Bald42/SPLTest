@@ -1,10 +1,13 @@
 using static Enums;
 using UnityEngine;
+using System;
 
 public class Bullet : BasePool
 {
+    public static Action<Vector3> OnDestroyBulletEvent = null;
     private Vector3 targetPosition = default;
     private Vector3 moveVector = default;
+    private Vector3 collisionPosition = default;
     private float speed = 10f;
     private Tag targetTag = Tag.Null;
     private Tag shooterTag = Tag.Null;
@@ -71,6 +74,7 @@ public class Bullet : BasePool
         if (other != null)
         {
             GameTag gameTag = other.gameObject.GetComponentInChildren<GameTag>();
+            collisionPosition = other.ClosestPoint(transform.position);
             if (gameTag != null)
             {
                 if (gameTag.MyTag != targetTag &&
@@ -90,6 +94,7 @@ public class Bullet : BasePool
     public void OnDeactiveAtCollision()
     {
         ChangeActive(false);
+        OnDestroyBulletEvent?.Invoke(collisionPosition);
     }
 
     protected override void ChangeActive(bool isActive)

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6029424622232142262
 Transform:
   m_ObjectHideFlags: 0
@@ -410,7 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotPoint: {fileID: 6029424622232142262}
-  prefabBullet: {fileID: 5453954769419271313, guid: e720f059a07ed5243b31ab132851a24f, type: 3}
 --- !u!114 &7323478333186394772
 MonoBehaviour:
   m_ObjectHideFlags: 0

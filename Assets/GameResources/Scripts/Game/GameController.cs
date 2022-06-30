@@ -6,8 +6,9 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera = null;
     [SerializeField] private BulletsPool bulletsPool = null;
+    [SerializeField] private ViewExplosionParticle viewExplosionParticle = null;
     private PlayerController playerController = null;
-    [SerializeField] private EnemyController[] enemyControllers = null;
+    private EnemyController[] enemyControllers = null;
 
     public Camera MainCamera
     {
@@ -37,6 +38,7 @@ public class GameController : MonoBehaviour
     {
         FindUnits();
         playerController.Init();
+        viewExplosionParticle.Init();
         for (int i = 0; i < enemyControllers.Length; i++)
         {
             enemyControllers[i].Init();
@@ -45,14 +47,7 @@ public class GameController : MonoBehaviour
 
     private void FindUnits()
     {
-        GameTag[] allGameTags = FindObjectsOfType<GameTag>();
-        GameTag[] enemies = FindObjectsOfType<GameTag>();
-        playerController = allGameTags.Where(x => x.MyTag == Tag.Player).FirstOrDefault().GetComponent<PlayerController>();
-        enemies = allGameTags.Where(x => x.MyTag == Tag.Enemy && x.gameObject.activeSelf).ToArray();
-        enemyControllers = new EnemyController[enemies.Length];
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            enemyControllers[i] = enemies[i].GetComponent<EnemyController>();
-        }
+        enemyControllers = FindObjectsOfType<EnemyController>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 }

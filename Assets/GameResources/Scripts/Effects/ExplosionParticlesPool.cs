@@ -1,18 +1,29 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ExplosionParticlesPool : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ExplosionParticle prefabBullet = null;
+    [SerializeField] private Transform parent = null;
+    private List<ExplosionParticle> explosionParticles = new List<ExplosionParticle>();
+
+    public void OnSpawnParticle(Vector3 startPosition)
     {
-        
+        ExplosionParticle newExplosionParticle = GetFreeExplosionParticle;
+        if (newExplosionParticle == null)
+        {
+            newExplosionParticle = Instantiate(prefabBullet, startPosition, Quaternion.identity, parent);
+            explosionParticles.Add(newExplosionParticle);
+        }
+        newExplosionParticle.Init(startPosition);
     }
 
-    // Update is called once per frame
-    void Update()
+    private ExplosionParticle GetFreeExplosionParticle
     {
-        
+        get
+        {
+            return explosionParticles.Where(x => !x.IsActive).FirstOrDefault();
+        }
     }
 }

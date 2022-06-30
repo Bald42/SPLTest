@@ -32,21 +32,19 @@ public class PlayerMove : BaseSuscribe, IMove
 
     protected override void OnFixedUpdateHandler()
     {
-        //Rotation();
         Move();
     }
 
     protected override void OnUpdateHandler()
     {
         Rotation();
-        //Move();
     }
 
     public void Move()
     {
         moveVector = (transform.TransformVector(playerInput.GetMoveInput()) + damageVector) * moveSpeed;
-        characterVelocity = Vector3.Lerp(characterVelocity, moveVector, movementSharpnessOnGround * Time.deltaTime);
-        damageVector = Vector3.Lerp(damageVector, Vector3.zero, movementSharpnessOnGround * Time.deltaTime);
+        characterVelocity = Vector3.Lerp(characterVelocity, moveVector, movementSharpnessOnGround * Time.fixedDeltaTime);
+        damageVector = Vector3.Lerp(damageVector, Vector3.zero, movementSharpnessOnGround * Time.fixedDeltaTime);
         characterVelocity += Vector3.down * gravityForce * Time.deltaTime;
         characterController.Move(characterVelocity * Time.deltaTime);
     }
