@@ -30,10 +30,16 @@ public class PlayerMove : BaseSuscribe, IMove
         Subscribe();
     }
 
+    protected override void OnFixedUpdateHandler()
+    {
+        //Rotation();
+        Move();
+    }
+
     protected override void OnUpdateHandler()
     {
         Rotation();
-        Move();
+        //Move();
     }
 
     public void Move()

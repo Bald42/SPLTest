@@ -11,12 +11,14 @@ public class BaseSuscribe : MonoBehaviour
     {
         MainController.Instance.OnDestroyEvent += OnDestroyHandler;
         MainController.Instance.OnUpdateEvent += OnUpdateHandler;
+        MainController.Instance.OnFixedUpdateEvent += OnFixedUpdateHandler;
     }
 
     protected virtual void Unsubscribe()
     {
         MainController.Instance.OnDestroyEvent -= OnDestroyHandler;
         MainController.Instance.OnUpdateEvent -= OnUpdateHandler;
+        MainController.Instance.OnFixedUpdateEvent -= OnFixedUpdateHandler;
     }
 
     protected virtual void OnDestroyHandler()
@@ -25,6 +27,10 @@ public class BaseSuscribe : MonoBehaviour
     }
 
     protected virtual void OnUpdateHandler()
+    {
+    }
+
+    protected virtual void OnFixedUpdateHandler()
     {
     }
 }

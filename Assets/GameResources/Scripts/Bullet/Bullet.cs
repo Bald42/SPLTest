@@ -1,26 +1,13 @@
-using System.Collections;
 using static Enums;
 using UnityEngine;
 
-public class Bullet : BaseSuscribe
+public class Bullet : BasePool
 {
     private Vector3 targetPosition = default;
     private Vector3 moveVector = default;
     private float speed = 10f;
-    private float dieDelay = 4f;
     private Tag targetTag = Tag.Null;
     private Tag shooterTag = Tag.Null;
-
-    private bool isActive = false;
-    private Coroutine delayDeactive = null;
-
-    public bool IsActive
-    {
-        get
-        {
-            return isActive;
-        }
-    }
 
     public Tag TargetTag
     {
@@ -29,6 +16,37 @@ public class Bullet : BaseSuscribe
             return targetTag;
         }
     }
+
+    #region Subscribe 
+
+    private void Subscribe()
+    {
+        MainController.Instance.OnDestroyEvent += OnDestroyHandler;
+        MainController.Instance.OnFixedUpdateEvent += OnFixedUpdateHandler;
+    }
+
+    private void Unsubscribe()
+    {
+        MainController.Instance.OnDestroyEvent -= OnDestroyHandler;
+        MainController.Instance.OnFixedUpdateEvent -= OnFixedUpdateHandler;
+    }
+
+    private void OnDestroy()
+    {
+        Unsubscribe();
+    }
+
+    private void OnDestroyHandler()
+    {
+        Unsubscribe();
+    }
+
+    private void OnFixedUpdateHandler()
+    {
+        Move();
+    }
+
+    #endregion
 
     public void Init(Vector3 startPosition,
                      Vector3 targetPosition,
@@ -40,26 +58,12 @@ public class Bullet : BaseSuscribe
         this.targetTag = targetTag;
         this.shooterTag = shooterTag;
         transform.LookAt(targetPosition);
-        isActive = true;
-        Subscribe();
-        gameObject.SetActive(true);
-        delayDeactive = StartCoroutine(DelayDeactive());
-    }
-
-    protected override void OnUpdateHandler()
-    {
-        Move();
+        ChangeActive(true);
     }
 
     private void Move()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
-
-    private IEnumerator DelayDeactive()
-    {
-        yield return new WaitForSeconds(dieDelay);
-        OnDeactive();
+        transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,14 +89,19 @@ public class Bullet : BaseSuscribe
 
     public void OnDeactiveAtCollision()
     {
-        OnDeactive();
+        ChangeActive(false);
     }
 
-    private void OnDeactive()
+    protected override void ChangeActive(bool isActive)
     {
-        isActive = false;
-        StopAllCoroutines();
-        Unsubscribe();
-        gameObject.SetActive(false);
+        base.ChangeActive(isActive);
+        if (isActive)
+        {
+            Subscribe();
+        }
+        else
+        {
+            Unsubscribe();
+        }
     }
 }

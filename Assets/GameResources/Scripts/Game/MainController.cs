@@ -5,6 +5,7 @@ public class MainController : MonoBehaviour
 {
     public Action OnDestroyEvent = null;
     public Action OnUpdateEvent = null;
+    public Action OnFixedUpdateEvent = null;
 
     [SerializeField] private GameController gameController = null;
     private static MainController instance = null;
@@ -39,6 +40,11 @@ public class MainController : MonoBehaviour
     private void Update()
     {
         OnUpdateEvent?.Invoke();
+    }
+
+    private void FixedUpdate()
+    {
+        OnFixedUpdateEvent?.Invoke();
     }
 
     private void OnDestroy()

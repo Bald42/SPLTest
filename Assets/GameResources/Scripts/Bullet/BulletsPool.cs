@@ -22,6 +22,7 @@ public class BulletsPool : MonoBehaviour
         }
         newBullet.Init(startPosition, targetPosition, targetTag, shooterTag);
     }
+
     private Bullet GetFreeBullet
     {
         get

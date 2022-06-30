@@ -36,7 +36,7 @@ public class EnemyMove : BaseSuscribe, IMove
         transform.Translate(directionVector * speed * direction * Time.deltaTime);
     }
 
-    protected override void OnUpdateHandler()
+    protected override void OnFixedUpdateHandler()
     {
         Move();
     }
