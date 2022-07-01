@@ -12,15 +12,9 @@ public class PlayerInput : MonoBehaviour
 
     private Vector3 moveVector = Vector3.zero;
 
-    public void Init()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     private bool CanProcessInput()
     {
-        return true;
+        return MainController.Instance.GameController.GameState == Enums.GameState.Play;
     }
 
     public Vector3 GetMoveInput()
@@ -38,12 +32,12 @@ public class PlayerInput : MonoBehaviour
 
     public float GetLookInputsHorizontal()
     {
-        return Input.GetAxisRaw(LOOK_X) * rotationSensitivity;
+        return CanProcessInput() ? Input.GetAxisRaw(LOOK_X) * rotationSensitivity : 0f;
     }
 
     public float GetLookInputsVertical()
     {
-        return Input.GetAxisRaw(LOOK_Y) * rotationSensitivity * CheckInvert;
+        return CanProcessInput() ? Input.GetAxisRaw(LOOK_Y) * rotationSensitivity * CheckInvert : 0f;
     }
 
     private float CheckInvert
@@ -63,6 +57,6 @@ public class PlayerInput : MonoBehaviour
 
     public bool GetFireInput()
     {
-        return Input.GetMouseButtonDown(0);
+        return CanProcessInput() && Input.GetMouseButtonDown(0);
     }
 }

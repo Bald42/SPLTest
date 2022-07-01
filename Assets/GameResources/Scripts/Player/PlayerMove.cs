@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMove : BaseSuscribe, IMove
@@ -20,24 +21,40 @@ public class PlayerMove : BaseSuscribe, IMove
     private Vector3 moveVector = default;
     private Vector3 damageVector = Vector3.zero;
 
-    private bool isDie = false;
     private float deltaX = 0f;
+    private bool isDie = false;
+    private Action onDieEvent = null;
 
-    public void Init(PlayerInput playerInput, CharacterController characterController)
+    public void Init(PlayerInput playerInput, CharacterController characterController, Action onDieEvent)
     {
         this.playerInput = playerInput;
         this.characterController = characterController;
+        this.onDieEvent += onDieEvent;
         Subscribe();
     }
 
     protected override void OnFixedUpdateHandler()
     {
+        CheckDie();
         Move();
     }
 
     protected override void OnUpdateHandler()
     {
         Rotation();
+    }
+
+    private void CheckDie()
+    {
+        if (transform.position.y <= killHeight)
+        {
+            if (!isDie)
+            {
+                isDie = true;
+                onDieEvent?.Invoke();
+                Debug.Log("CheckDie");
+            }
+        }
     }
 
     public void Move()

@@ -1,9 +1,11 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput), typeof(PlayerMove))]
 
 public class PlayerController : MonoBehaviour
 {
+    public Action OnDieEvent = null;
     private PlayerInput playerInput = null;
     private PlayerMove playerMove = null;
     private CharacterController characterController = null;
@@ -14,8 +16,7 @@ public class PlayerController : MonoBehaviour
     public void Init()
     {
         Cach();
-        playerInput.Init();
-        playerMove.Init(playerInput, characterController);
+        playerMove.Init(playerInput, characterController, OnDieEvent);
         playerShoot.Init(gameTag, playerInput, MainController.Instance.GameController.MainCamera, MainController.Instance.GameController.BulletsPool);
         playerTakeDamage.Init(gameTag, playerMove);
     }

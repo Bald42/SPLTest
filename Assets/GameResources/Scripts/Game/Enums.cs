@@ -13,7 +13,14 @@ public static class Enums
         Player = 1,
         Enemy = 2,
         Obstacle = 3,
-        Bullet = 4,
-        Finish = 5
+        Bullet = 4
+    }
+
+    public enum GameState
+    {
+        Null = 0,
+        Play = 1,
+        Win = 2,
+        Lose = 3
     }
 }
