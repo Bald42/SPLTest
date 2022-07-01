@@ -52,13 +52,16 @@ public class PlayerMove : BaseSuscribe, IMove
             {
                 isDie = true;
                 onDieEvent?.Invoke();
-                Debug.Log("CheckDie");
             }
         }
     }
 
     public void Move()
     {
+        if (isDie)
+        {
+            return;
+        }
         moveVector = transform.TransformVector(playerInput.GetMoveInput()) * moveSpeed;
         characterVelocity = Vector3.Lerp(characterVelocity, moveVector + damageVector, movementSharpnessOnGround * Time.fixedDeltaTime);
         damageVector = Vector3.Lerp(damageVector, Vector3.zero, movementSharpnessOnGround * Time.fixedDeltaTime);

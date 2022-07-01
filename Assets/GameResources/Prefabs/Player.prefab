@@ -391,7 +391,7 @@ MonoBehaviour:
   rotationSpeed: 200
   gravityForce: 100
   moveSpeed: 7
-  killHeight: -20
+  killHeight: -10
   movementSharpnessOnGround: 15
   damagePower: 100
 --- !u!114 &8321934526231005302

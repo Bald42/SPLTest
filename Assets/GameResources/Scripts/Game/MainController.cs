@@ -27,6 +27,14 @@ public class MainController : MonoBehaviour
         }
     }
 
+    public UIController UIController
+    {
+        get
+        {
+            return uIController;
+        }
+    }
+
     private void Awake()
     {
         Init();

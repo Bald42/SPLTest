@@ -1,10 +1,11 @@
+using UnityEngine.SceneManagement;
 using static Enums;
 using UnityEngine;
 using System;
 
 public class GameController : MonoBehaviour
 {
-    public static Action<GameState> OnChangeGameStateEvent = null;
+    public Action<GameState> OnChangeGameStateEvent = null;
 
     [SerializeField] private Camera mainCamera = null;
     [SerializeField] private BulletsPool bulletsPool = null;
@@ -12,6 +13,7 @@ public class GameController : MonoBehaviour
     private PlayerController playerController = null;
     private EnemyController[] enemyControllers = null;
     private GameState gameState = GameState.Null;
+    private const string SCENE_NAME = "GameScene";
 
     public GameState GameState
     {
@@ -73,8 +75,6 @@ public class GameController : MonoBehaviour
 
     private void OnDieHandler()
     {
-        Debug.Log("OnDieHandler");
-
         ChangeGameState(GameState.Lose);
     }
 
@@ -103,7 +103,7 @@ public class GameController : MonoBehaviour
     {
         this.gameState = gameState;
         ChangeStateMouse(gameState);
-        Debug.Log(gameState);
+        CheckViewFinishPopup(gameState);
         OnChangeGameStateEvent?.Invoke(gameState);
     }
 
@@ -119,5 +119,19 @@ public class GameController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
+    }
+
+    private void CheckViewFinishPopup(GameState gameState)
+    {
+        if (gameState == GameState.Lose ||
+            gameState == GameState.Win)
+        {
+            MainController.Instance.UIController.UIFinish.Show(gameState, () => ReloadGame());
+        }
+    }
+
+    private void ReloadGame()
+    {
+        SceneManager.LoadScene(SCENE_NAME);
     }
 }
