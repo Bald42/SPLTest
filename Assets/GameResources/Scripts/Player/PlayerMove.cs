@@ -18,7 +18,7 @@ public class PlayerMove : BaseSuscribe, IMove
     private Vector3 roationPlayer = default;
     private Vector3 characterVelocity = default;
     private Vector3 moveVector = default;
-    private Vector3 damageVector = default;
+    private Vector3 damageVector = Vector3.zero;
 
     private bool isDie = false;
     private float deltaX = 0f;
@@ -51,7 +51,7 @@ public class PlayerMove : BaseSuscribe, IMove
 
     public void TakeDamage(Vector3 direction)
     {
-        damageVector = direction * damagePower;
+        damageVector += direction * damagePower;
     }
 
     #region Rotation
