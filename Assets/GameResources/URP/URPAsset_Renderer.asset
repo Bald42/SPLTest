@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     passTag: BehidObjects
-    Event: 300
+    Event: 1000
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -32,13 +32,13 @@ MonoBehaviour:
       stencilReference: 0
       stencilCompareFunction: 8
       passOperation: 0
-      failOperation: 0
-      zFailOperation: 0
+      failOperation: 2
+      zFailOperation: 4
     cameraSettings:
       overrideCamera: 0
       restoreCamera: 1
-      offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60
+      offset: {x: 0, y: 2.49, z: 0, w: 1}
+      cameraFieldOfView: 39
 --- !u!114 &-488034503479545564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     passTag: InFrontObject
-    Event: 300
+    Event: 1000
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -93,7 +93,8 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -5631832034025119023}
   - {fileID: -488034503479545564}
-  m_RendererFeatureMap: d16244919ab6d7b124b1f76d34273af9
+  - {fileID: 8885524040746377735}
+  m_RendererFeatureMap: d16244919ab6d7b124b1f76d34273af907a2e19b09b94f7b
   postProcessData: {fileID: 0}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -120,3 +121,32 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
   m_AccurateGbufferNormals: 0
+--- !u!114 &8885524040746377735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd37d03d18ee9584d881763c34816b35, type: 3}
+  m_Name: NewOutlineFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  _outlineResources: {fileID: 11400000, guid: 231d88937a104094b8e4e0fdb8d2e77b, type: 2}
+  _outlineLayers: {fileID: 0}
+  _outlineSettings:
+    _outlineSettings: {fileID: 0}
+    _outlineColor: {r: 1, g: 0, b: 0, a: 1}
+    _outlineWidth: 10
+    _outlineIntensity: 2
+    _outlineAlphaCutoff: 0.9
+    _outlineMode: 4
+    _filterMode: 1
+    _layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    _renderingLayerMask: 1
+  _renderPassEvent: 300
+  _shaderPassNames: []

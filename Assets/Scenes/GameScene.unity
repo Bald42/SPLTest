@@ -1589,7 +1589,7 @@ MonoBehaviour:
   colorNotFind: {r: 0.49056602, g: 0, b: 0, a: 1}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
 --- !u!1 &2088996002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,7 +1781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4668365464399420757, guid: 13e405367a45c4540a54ac636386e5b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10.44
       objectReference: {fileID: 0}
     - target: {fileID: 4668365464399420757, guid: 13e405367a45c4540a54ac636386e5b7, type: 3}
       propertyPath: m_LocalRotation.w
