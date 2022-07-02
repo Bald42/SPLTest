@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BehidObjects
-  m_Shader: {fileID: -6465566751694194690, guid: db145d05ee803204f989a1d1d7ca6f85, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 3102baff63e630647b8e8a11f095f8fb, type: 3}
   m_ShaderKeywords: _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -123,6 +123,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - FresnelPower: 1.01
+    - NoiseAmount: 0.617
+    - NoisePower: -0.51
+    - NoiseScale: 10
     - _AlphaClip: 0
     - _BASE_COLOR_WEIGHT: 1
     - _BUMP_MAP_STRENGTH: 0.3
@@ -165,9 +169,11 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 0
     m_Colors:
+    - NoiseSpeed: {r: 0, g: 10, b: 10, a: 0}
+    - NoiseTiling: {r: 30, g: 30, b: 0, a: 0}
     - _BASE_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 0, b: 0, a: 0.6431373}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.509434, g: 0, b: 0, a: 1}
     - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _REFLECTIONS_COLOR: {r: 1, g: 1, b: 1, a: 1}
