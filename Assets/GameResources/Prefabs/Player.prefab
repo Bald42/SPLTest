@@ -143,7 +143,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 300
-  field of view: 26.991467
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -393,7 +393,7 @@ MonoBehaviour:
   moveSpeed: 7
   killHeight: -10
   movementSharpnessOnGround: 15
-  damagePower: 100
+  damagePower: 50
 --- !u!114 &8321934526231005302
 MonoBehaviour:
   m_ObjectHideFlags: 0
