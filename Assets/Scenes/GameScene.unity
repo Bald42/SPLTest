@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 210922813}
   - component: {fileID: 210922815}
   - component: {fileID: 210922814}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FinishTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2407,7 +2407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 385269454470195274, guid: 7e780c8570f60f14587c5c988989eba3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 385269454470195277, guid: 7e780c8570f60f14587c5c988989eba3, type: 3}
       propertyPath: m_RootOrder
