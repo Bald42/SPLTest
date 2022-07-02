@@ -7,6 +7,14 @@ public class EnemyShoot : BaseShootController, IShot
     [SerializeField] private float speed = 1f;
     private Transform player = null;
 
+    private bool CanShoot
+    {
+        get
+        {
+            return MainController.Instance.GameController.GameState == GameState.Play;
+        }
+    }
+
     public void Init(GameTag gameTag, Transform player, BulletsPool bulletsPool)
     {
         base.Init(gameTag, bulletsPool);
@@ -20,7 +28,10 @@ public class EnemyShoot : BaseShootController, IShot
         while (true)
         {
             yield return new WaitForSeconds(speed + Random.RandomRange(-0.2f, 0.2f));
-            OnShot(player.position);
+            if (CanShoot)
+            {
+                OnShot(player.position);
+            }
         }
     }
 

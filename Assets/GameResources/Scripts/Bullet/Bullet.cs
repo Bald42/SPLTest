@@ -26,12 +26,14 @@ public class Bullet : BasePool
     {
         MainController.Instance.OnDestroyEvent += OnDestroyHandler;
         MainController.Instance.OnFixedUpdateEvent += OnFixedUpdateHandler;
+        MainController.Instance.GameController.OnChangeGameStateEvent += OnChangeGameStateHandler;
     }
 
     private void Unsubscribe()
     {
         MainController.Instance.OnDestroyEvent -= OnDestroyHandler;
         MainController.Instance.OnFixedUpdateEvent -= OnFixedUpdateHandler;
+        MainController.Instance.GameController.OnChangeGameStateEvent -= OnChangeGameStateHandler;
     }
 
     private void OnDestroy()
@@ -47,6 +49,14 @@ public class Bullet : BasePool
     private void OnFixedUpdateHandler()
     {
         Move();
+    }
+
+    private void OnChangeGameStateHandler(GameState gameState)
+    {
+        if (gameState != GameState.Play)
+        {
+            Destroy(gameObject);
+        }
     }
 
     #endregion
