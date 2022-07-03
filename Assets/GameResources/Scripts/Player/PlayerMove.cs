@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System;
 
 public class PlayerMove : BaseSuscribe, IMove
 {
@@ -31,6 +31,12 @@ public class PlayerMove : BaseSuscribe, IMove
         this.characterController = characterController;
         this.onDieEvent += onDieEvent;
         Subscribe();
+    }
+
+    protected override void OnDestroyHandler()
+    {
+        base.OnDestroyHandler();
+        onDieEvent = null;
     }
 
     protected override void OnFixedUpdateHandler()

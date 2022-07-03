@@ -1,4 +1,3 @@
-using static Enums;
 using UnityEngine;
 
 public class UIController : MonoBehaviour

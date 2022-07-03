@@ -15,13 +15,13 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
-        Cach();
+        Caching();
         playerMove.Init(playerInput, characterController, OnDieEvent);
         playerShoot.Init(gameTag, playerInput, MainController.Instance.GameController.MainCamera, MainController.Instance.GameController.BulletsPool);
         playerTakeDamage.Init(gameTag, playerMove);
     }
 
-    private void Cach()
+    private void Caching()
     {
         playerInput = GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();

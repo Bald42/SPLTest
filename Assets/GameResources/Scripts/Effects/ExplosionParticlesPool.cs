@@ -8,6 +8,14 @@ public class ExplosionParticlesPool : MonoBehaviour
     [SerializeField] private Transform parent = null;
     private List<ExplosionParticle> explosionParticles = new List<ExplosionParticle>();
 
+    private ExplosionParticle GetFreeExplosionParticle
+    {
+        get
+        {
+            return explosionParticles.Where(x => !x.IsActive).FirstOrDefault();
+        }
+    }
+
     public void OnSpawnParticle(Vector3 startPosition)
     {
         ExplosionParticle newExplosionParticle = GetFreeExplosionParticle;
@@ -17,13 +25,5 @@ public class ExplosionParticlesPool : MonoBehaviour
             explosionParticles.Add(newExplosionParticle);
         }
         newExplosionParticle.Init(startPosition);
-    }
-
-    private ExplosionParticle GetFreeExplosionParticle
-    {
-        get
-        {
-            return explosionParticles.Where(x => !x.IsActive).FirstOrDefault();
-        }
     }
 }

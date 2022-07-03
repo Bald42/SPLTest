@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5812035934215287944, guid: 7e780c8570f60f14587c5c988989eba3, type: 3}
       propertyPath: enemyMoveVector
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e780c8570f60f14587c5c988989eba3, type: 3}

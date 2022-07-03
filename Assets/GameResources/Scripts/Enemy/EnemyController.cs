@@ -10,13 +10,13 @@ public class EnemyController : MonoBehaviour
 
     public void Init()
     {
-        Cach();
+        Caching();
         enemyMove.Init();
         enemyShoot.Init(gameTag, MainController.Instance.GameController.PlayerController.transform, MainController.Instance.GameController.BulletsPool);
         enemyTakeDamage.Init(gameTag);
     }
 
-    private void Cach()
+    private void Caching()
     {
         enemyMove = GetComponent<EnemyMove>();
         enemyShoot = GetComponent<EnemyShoot>();

@@ -9,6 +9,14 @@ public class BulletsPool : MonoBehaviour
     [SerializeField] private Transform parent = null;
     private List<Bullet> bullets = new List<Bullet>();
 
+    private Bullet GetFreeBullet
+    {
+        get
+        {
+            return bullets.Where(x => !x.IsActive).FirstOrDefault();
+        }
+    }
+
     public void OnSpawnBullet(Vector3 startPosition,
                               Vector3 targetPosition,
                               Tag targetTag,
@@ -21,13 +29,5 @@ public class BulletsPool : MonoBehaviour
             bullets.Add(newBullet);
         }
         newBullet.Init(startPosition, targetPosition, targetTag, shooterTag);
-    }
-
-    private Bullet GetFreeBullet
-    {
-        get
-        {
-            return bullets.Where(x => !x.IsActive).FirstOrDefault();
-        }
     }
 }

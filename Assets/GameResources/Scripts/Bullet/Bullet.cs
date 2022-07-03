@@ -50,11 +50,11 @@ public class Bullet : BasePool
 
     private void Awake()
     {
-        Cach();
+        Caching();
         Subscribe();
     }
 
-    private void Cach()
+    private void Caching()
     {
         rigidbody = GetComponent<Rigidbody>();
     }

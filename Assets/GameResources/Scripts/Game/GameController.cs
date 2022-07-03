@@ -6,6 +6,7 @@ using System;
 public class GameController : MonoBehaviour
 {
     public Action<GameState> OnChangeGameStateEvent = null;
+    private const string SCENE_NAME = "GameScene";
 
     [SerializeField] private Camera mainCamera = null;
     [SerializeField] private BulletsPool bulletsPool = null;
@@ -13,7 +14,6 @@ public class GameController : MonoBehaviour
     private PlayerController playerController = null;
     private EnemyController[] enemyControllers = null;
     private GameState gameState = GameState.Null;
-    private const string SCENE_NAME = "GameScene";
 
     public GameState GameState
     {
@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
 
     #region Subscribe
 
-    private void Sunscribe()
+    private void Subscribe()
     {
         MainController.Instance.OnDestroyEvent += OnDestroyHandler;
         FinishTrigger.OnFinishEvent += OnFinishHandler;
@@ -83,7 +83,7 @@ public class GameController : MonoBehaviour
     public void Init()
     {
         FindUnits();
-        Sunscribe();
+        Subscribe();
         playerController.Init();
         viewExplosionParticle.Init();
         for (int i = 0; i < enemyControllers.Length; i++)
