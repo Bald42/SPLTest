@@ -40,12 +40,12 @@ public class PlayerShoot : BaseShootController, IShot
 
     #endregion
 
-    public void Init(GameTag gameTag, PlayerInput playerInput, Camera camera, BulletsPool bulletsPool)
+    public void Init(GameTag gameTag, PlayerInput playerInput, Camera camera)
     {
         targetTag = Tag.Enemy;
         this.playerInput = playerInput;
         this.camera = camera;
-        base.Init(gameTag, bulletsPool);
+        base.Init(gameTag);
         Subscribe();
     }
 

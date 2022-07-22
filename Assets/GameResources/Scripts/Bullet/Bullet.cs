@@ -35,6 +35,7 @@ public class Bullet : BasePool
 
     private void OnDestroyHandler()
     {
+        OnDestroyBulletEvent = null;
         Unsubscribe();
     }
 

@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     {
         Caching();
         enemyMove.Init();
-        enemyShoot.Init(gameTag, MainController.Instance.GameController.PlayerController.transform, MainController.Instance.GameController.BulletsPool);
+        enemyShoot.Init(gameTag);
         enemyTakeDamage.Init(gameTag);
     }
 

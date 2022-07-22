@@ -1,11 +1,12 @@
 using System.Collections;
 using static Enums;
 using UnityEngine;
+using Zenject;
 
 public class EnemyShoot : BaseShootController, IShot
 {
     [SerializeField] private float speed = 1f;
-    private Transform player = null;
+    [Inject] private PlayerController playerController = null;
 
     private bool CanShoot
     {
@@ -15,10 +16,9 @@ public class EnemyShoot : BaseShootController, IShot
         }
     }
 
-    public void Init(GameTag gameTag, Transform player, BulletsPool bulletsPool)
+    public void Init(GameTag gameTag)
     {
-        base.Init(gameTag, bulletsPool);
-        this.player = player;
+        base.Init(gameTag);
         targetTag = Tag.Player;
         StartCoroutine(Shoot());
     }
@@ -30,7 +30,7 @@ public class EnemyShoot : BaseShootController, IShot
             yield return new WaitForSeconds(speed + Random.RandomRange(-0.2f, 0.2f));
             if (CanShoot)
             {
-                OnShot(player.position);
+                OnShot(playerController.transform.position);
             }
         }
     }

@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using static Enums;
 using UnityEngine;
+using Zenject;
 using System;
 
 public class GameController : MonoBehaviour
@@ -9,9 +10,8 @@ public class GameController : MonoBehaviour
     private const string SCENE_NAME = "GameScene";
 
     [SerializeField] private Camera mainCamera = null;
-    [SerializeField] private BulletsPool bulletsPool = null;
     [SerializeField] private ViewExplosionParticle viewExplosionParticle = null;
-    private PlayerController playerController = null;
+    [Inject] private PlayerController playerController = null;
     private EnemyController[] enemyControllers = null;
     private GameState gameState = GameState.Null;
 
@@ -28,22 +28,6 @@ public class GameController : MonoBehaviour
         get
         {
             return mainCamera;
-        }
-    }
-
-    public PlayerController PlayerController
-    {
-        get
-        {
-            return playerController;
-        }
-    }
-
-    public BulletsPool BulletsPool
-    {
-        get
-        {
-            return bulletsPool;
         }
     }
 
@@ -96,7 +80,6 @@ public class GameController : MonoBehaviour
     private void FindUnits()
     {
         enemyControllers = FindObjectsOfType<EnemyController>();
-        playerController = FindObjectOfType<PlayerController>();
     }
 
     private void ChangeGameState(GameState gameState)
